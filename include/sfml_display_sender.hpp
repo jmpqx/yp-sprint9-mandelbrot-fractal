@@ -2,13 +2,14 @@
 
 #include "types_sfml.hpp"
 
+#include <print>
 #include <stdexec/execution.hpp>
 
 namespace render {
 
 static auto MakeSfmlDisplaySender(SfmlState &st) {
     static AvrTimeCounter time_counter;
-    return ex::then([&](FrameBuffer *fb) {
+    return stdexec::then([&](FrameBuffer *fb) {
         time_counter.Start();
         st.texture.update(fb->rgba.data());
 
